@@ -1,0 +1,20 @@
+{
+  "name": "easycheckout-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "restaurant-app",
+    "restaurant-backend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "npm run start:dev --workspace=restaurant-backend",
+    "dev:frontend": "npm run dev --workspace=restaurant-app",
+    "install:all": "npm install",
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
