@@ -50,11 +50,21 @@ EasyCheckOut/
 git clone https://github.com/JosephJMRG/easyCheckOut.git
 cd easyCheckOut
 
-# Instalar dependencias
+# Instalar dependencias en la raíz del proyecto
 npm install
 
+# Instalar dependencias en el frontend (restaurant-app)
+cd restaurant-app
+npm install
+cd ..
+
+# Instalar dependencias en el backend (restaurant-backend)
+cd restaurant-backend
+npm install
+cd ..
+
 # Levantar servicios (PostgreSQL + Redis)
-docker-compose up -d
+docker-compose -f docker-compose-qdrant.yml up -d
 
 # Ejecutar backend y frontend
 npm run dev
