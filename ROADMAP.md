@@ -19,26 +19,78 @@ Estructura base con frontend en React y un backend en NestJS. Organización ópt
 #### **Frontend (React)**
 
 - **Vistas Principales**:
-  - `MesaView.tsx`: Para mostrar la mesa y los usuarios conectados.
-  - `MenuView.tsx`: Para mostrar el menú y permitir realizar pedidos.
-  - `CheckoutView.tsx`: Para mostrar el resumen de pedidos y la división de la cuenta.
+  - `MesaView.tsx`: Unirse a mesa mediante escaneo de QR.
+  - `MenuView.tsx`: Ver menú y realizar pedidos.
+  - `CheckoutView.tsx`: Mostrar resumen de pedidos y división de cuenta.
+  - `Dashboard.tsx`: Panel de administración con métricas y overview.
+  - `MesasPanel.tsx`: Gestión de mesas.
+  - `MenuPanel.tsx`: CRUD para menú.
+  - `ReportesView.tsx`: Reportes y analytics.
+  - `ConfigView.tsx`: Configuración del sistema.
+  - `BoletaView.tsx`: Boleta electrónica para meseros.
+  - `MesasStatus.tsx`: Estado de mesas.
+  - `KitchenDisplay.tsx`: Display de órdenes para cocina.
 - **Componentes Reutilizables**:
-  - `UserList.tsx`: Para mostrar la lista de usuarios en la mesa.
-  - `PedidoItem.tsx`: Para mostrar los items del pedido.
+  - `UserList.tsx`: Lista de usuarios en la mesa.
+  - `PedidoItem.tsx`: Item de pedido.
+  - `MenuCard.tsx`: Tarjeta de item del menú.
+  - `MesaCard.tsx`: Tarjeta de mesa.
+  - `MenuItemForm.tsx`: Formulario para crear/editar items del menú.
+  - `Chart.tsx`: Gráficos para reportes.
 - **Servicios**:
-  - `api.ts`: Para manejar las llamadas al backend.
-  - `useWebSocket.ts`: Para manejar la comunicación en tiempo real (WebSocket).
+  - `api.ts`: Configuración base de Axios para llamadas al backend.
+  - `authService.ts`: Manejo de login/logout.
+  - `mesaService.ts`: API para mesas.
+  - `pedidoService.ts`: API para pedidos.
+  - `adminService.ts`: API para administración.
+- **Hooks**:
+  - `useWebSocket.ts`: Cliente WebSocket para comunicación en tiempo real.
+  - `useAuth.ts`: Autenticación.
+  - `useRealtime.ts`: Actualizaciones en tiempo real.
+- **Contextos**:
+  - `AuthContext.tsx`: Contexto de autenticación.
+  - `MesaContext.tsx`: Contexto de mesa activa.
+- **Utilidades**:
+  - `formatters.ts`: Formateo de precios y fechas.
+  - `validators.ts`: Validaciones.
+- **Tipos**:
+  - `Mesa.ts`: Definición de tipos para mesas.
+  - `Pedido.ts`: Definición de tipos para pedidos.
+  - `Usuario.ts`: Definición de tipos para usuarios.
 
 #### **Backend (NestJS)**
 
 - **Módulos**:
-  - `mesa`: Para gestionar las mesas y los usuarios conectados.
-  - `pedido`: Para gestionar los pedidos realizados por los usuarios.
+  - `auth`: Autenticación y autorización.
+  - `usuarios`: Gestión de usuarios.
+  - `mesa`: Gestión de mesas y usuarios conectados.
+  - `pedido`: Gestión de pedidos realizados por los usuarios.
+  - `menu`: Gestión del menú.
+  - `admin`: Panel de administración.
+  - `reportes`: Generación de reportes y analytics.
+  - `common`: Utilidades comunes como filtros, interceptores y pipes.
 - **Controladores y Servicios**:
-  - `mesa.controller.ts` y `mesa.service.ts`: Para manejar la lógica de las mesas.
-  - `pedido.controller.ts` y `pedido.service.ts`: Para manejar la lógica de los pedidos.
+  - `auth.controller.ts` y `auth.service.ts`: Manejo de autenticación.
+  - `usuarios.controller.ts` y `usuarios.service.ts`: Manejo de usuarios.
+  - `mesa.controller.ts` y `mesa.service.ts`: Manejo de la lógica de las mesas.
+  - `pedido.controller.ts` y `pedido.service.ts`: Manejo de la lógica de los pedidos.
+  - `menu.controller.ts` y `menu.service.ts`: Manejo del menú.
+  - `dashboard.controller.ts` y `dashboard.service.ts`: Métricas y reportes.
+  - `config.controller.ts`: Configuración del sistema.
 - **WebSocket**:
-  - `mesa.gateway.ts`: Para manejar la comunicación en tiempo real entre el frontend y el backend.
+  - `mesa.gateway.ts`: Comunicación en tiempo real para mesas.
+  - `cocina.gateway.ts`: Comunicación en tiempo real para cocina.
+- **DTOs**:
+  - `create-mesa.dto.ts` y `update-mesa.dto.ts`: DTOs para mesas.
+  - `create-pedido.dto.ts`: DTO para pedidos.
+  - `create-menu-item.dto.ts`: DTO para items del menú.
+- **Utilidades Comunes**:
+  - `http-exception.filter.ts`: Filtro para excepciones HTTP.
+  - `logging.interceptor.ts`: Interceptor para logging.
+  - `validation.pipe.ts`: Pipe para validaciones.
+- **Base de Datos**:
+  - `schema.prisma`: Esquema de la base de datos.
+  - `seed.ts`: Datos iniciales para la base de datos.
 
 ---
 
@@ -70,16 +122,25 @@ Estructura base con frontend en React y un backend en NestJS. Organización ópt
 ### 5. **Prioridad en realización**
 
 1. **Desarrollar el Frontend**:
-   - Implementra vistas principales (`MesaView`, `MenuView`, `CheckoutView`).
+   - Implementar vistas principales (`MesaView.tsx`, `MenuView.tsx`, `CheckoutView.tsx`).
+   - Implementar vistas de administración (`Dashboard.tsx`, `MesasPanel.tsx`, `MenuPanel.tsx`, `ReportesView.tsx`, `ConfigView.tsx`).
+   - Implementar vistas para meseros (`BoletaView.tsx`, `MesasStatus.tsx`).
+   - Implementar vistas para cocina (`KitchenDisplay.tsx`).
    - Conectar el frontend con el backend usando `api.ts` y `useWebSocket.ts`.
+   - Implementar hooks (`useAuth.ts`, `useRealtime.ts`) y contextos (`AuthContext.tsx`, `MesaContext.tsx`).
 
 2. **Configurar el Backend**:
-   - Configurar backend correctamente para manejar las mesas y pedidos.
-   - Implementar los endpoints necesarios para registrar usuarios en una mesa y manejar pedidos.
+   - Configurar módulos principales (`auth`, `usuarios`, `mesa`, `pedido`, `menu`, `admin`, `reportes`).
+   - Implementar controladores y servicios para cada módulo (`auth.controller.ts`, `mesa.controller.ts`, `pedido.controller.ts`, etc.).
+   - Configurar WebSocket para comunicación en tiempo real (`mesa.gateway.ts`, `cocina.gateway.ts`).
+   - Implementar DTOs para validación de datos (`create-mesa.dto.ts`, `create-pedido.dto.ts`, etc.).
+   - Configurar utilidades comunes (`http-exception.filter.ts`, `logging.interceptor.ts`, `validation.pipe.ts`).
 
 3. **Probar la Aplicación**:
    - Testing del flujo completo: desde el escaneo del QR hasta la división de la cuenta.
    - Asegurar comunicación en tiempo real funcione correctamente.
+   - Probar vistas de administración, meseros y cocina.
+   - Validar integración con la base de datos (`schema.prisma`, `seed.ts`).
 
 ---
 
