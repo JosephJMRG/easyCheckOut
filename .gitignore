@@ -33,6 +33,8 @@ Thumbs.db
 
 # Docker
 **/docker-compose.yml
+# index de código
+docker-compose-qdrant.yml 
 
 # Others
 restaurant-app/qdrant_storage
