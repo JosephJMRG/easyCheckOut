@@ -4,7 +4,7 @@ Aplicación web para gestionar pedidos grupales y dividir cuentas en restaurante
 
 ## El Problema
 
-Dividir la cuenta entre 12 personas al final de una comida es caótico. Nadie recuerda quién pidió qué, el mesero tiene que hacer cálculos manuales, y el proceso toma demasiado tiempo.
+Dividir la cuenta entre grupos personas grandes al final de una comida es caótico. Nadie recuerda quién pidió qué, el mesero tiene que hacer cálculos manuales, y el proceso toma demasiado tiempo.
 
 ## La Solución
 
